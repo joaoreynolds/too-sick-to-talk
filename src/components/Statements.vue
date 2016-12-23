@@ -54,6 +54,7 @@ export default {
 <style>
 .statements{
   font-size: 1.5em;
+  padding: 10px 0;
 }
 ul {
   list-style: none;
@@ -64,13 +65,34 @@ li {
   border-top: 1px solid #EEEADE;
   padding: 6px 12px;
 }
+li:first-child{
+  border-top: 0px;
+}
+
+li .date{
+  color: #CBCBCB;
+  font-size: .7em;
+  line-height: 1em;
+  margin-bottom: 5px;
+}
+
+li .msg{
+  line-height: 1em;
+}
+
+.playback-btn{
+  color: #D4EED7;
+}
+.playback-btn:hover, .playback-btn:focus{
+  color: #00AE12;
+}
 
 .new-statement{
   display: flex;
   padding: 6px 12px;
-  border: 2px solid #D7D7D7;
+  border: 2px solid #AAA9A8;
   border-radius: 3px;
-  margin-top: 10px;
+  margin-top: 5px;
 }
 .new-statement.isWorking{
   border-color: #00AE12;
