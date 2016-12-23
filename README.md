@@ -1,4 +1,4 @@
-# talk-without-tonsils
+# too-sick-to-talk
 
 > Enables one who has just lost their tonsils to talk
 
