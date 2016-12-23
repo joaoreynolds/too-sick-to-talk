@@ -65,7 +65,7 @@ li {
   border-top: 1px solid #EEEADE;
   padding: 6px 12px;
 }
-li:first-child{
+li:first-child:not(.new-statement){
   border-top: 0px;
 }
 
