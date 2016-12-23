@@ -1,5 +1,5 @@
 {
-  "name": "talk-without-tonsils",
+  "name": "too-sick-to-talk",
   "version": "1.0.0",
   "description": "Enables one who has just lost their tonsils to talk",
   "author": "John Reynolds <john@bluepinemedia.com>",
@@ -11,7 +11,7 @@
     "e2e": "node test/e2e/runner.js",
     "test": "npm run unit && npm run e2e",
     "lint": "eslint --ext .js,.vue src test/unit/specs test/e2e/specs",
-    "postinstall": "node build/build.js"
+    "postinstall": "npm run build"
   },
   "dependencies": {
     "aws-sdk": "^2.7.18",
