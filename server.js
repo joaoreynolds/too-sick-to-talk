@@ -39,6 +39,9 @@ app.use((req, res) => {
 /*
 Startup app
  */
-app.listen(env.NODE_PORT || 3000, env.NODE_IP || 'localhost', function () {
+// app.listen(env.NODE_PORT || 3000, env.NODE_IP || 'localhost', function () {
+//  console.log(`Application worker ${process.pid} started...`)
+// })
+app.listen(env.PORT || 3000, function () {
  console.log(`Application worker ${process.pid} started...`)
 })
