@@ -58,7 +58,6 @@ export default {
     right: 0px;
     background: #564C30;
     color: #ffffff;
-    height: 110px;
   }
 
   .voice-label{
@@ -67,5 +66,18 @@ export default {
 
   h3{
     font-weight: normal;
+    display: none;
+  }
+
+  @media screen and (min-width: 576px) {
+    .statements-header {
+      height: 110px;
+    }
+  }
+
+  @media screen and (min-width: 768px) {
+    h3{
+      display: block;
+    }
   }
 </style>

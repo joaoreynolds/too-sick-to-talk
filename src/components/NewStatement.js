@@ -99,7 +99,7 @@ export default Vue.component('new-statement', {
       :disabled="talking||loading"
       ref="newMsgElem"/>
     <span v-if="talking"><i class="fi-volume text-muted"></i></span>
-    <span v-if="loading" class="text-muted">Processing...</span>
-    
+    <span v-if="loading" class="text-muted processing-label">Processing...</span>
+
   </li>`
 })

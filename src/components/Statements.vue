@@ -53,7 +53,6 @@ export default {
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style>
 .statements{
-  font-size: 1.5em;
   padding: 10px 0;
 }
 ul {
@@ -106,5 +105,15 @@ li .msg{
 .new-statement .message-input:focus{
   outline: 0px;
   border: 0px;
+}
+.new-statement .processing-label{
+  font-size: .7em;
+  line-height: 36px;
+}
+
+@media screen and (min-width: 576px) {
+  .statements {
+    font-size: 1.5em;
+  }
 }
 </style>
