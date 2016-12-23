@@ -1,22 +1,22 @@
-
 import Vue from 'vue'
 import AWS from 'aws-sdk/global'
 import Polly from 'aws-sdk/clients/polly'
+import {Howl} from 'howler'
 
 export default Vue.component('new-statement', {
-  props: ['onRead'],
+  props: ['onRead', 'voice'],
   data () {
     return {
       message: '',
-      talking: false
+      talking: false,
+      loading: false
     }
   },
   methods: {
     submit: function (e) {
       e.preventDefault()
 
-      const audioElement = document.getElementById('audio-elem')
-      this.talking = true
+      this.loading = true
 
       // call aws polly to read the message out loud
       // aws documentation is fragmented with this. The only instructions that seemed to work were:
@@ -47,7 +47,7 @@ export default Vue.component('new-statement', {
       var params = {
         OutputFormat: 'mp3', /* required */
         Text: this.message, /* required */
-        VoiceId: 'Joey', /* required */
+        VoiceId: this.voice || 'Joey', /* required */
         // LexiconNames: [
         //   'STRING_VALUE',
         //   /* more items */
@@ -65,21 +65,32 @@ export default Vue.component('new-statement', {
           var blob = new Blob([arrayBuffer])
           var url = URL.createObjectURL(blob)
 
-          audioElement.src = url
-          console.log(audioElement)
-          audioElement.play()
-
-          // call onRead (callback)
-          this.onRead(this.message, url)
-          this.talking = false
-          this.message = ''
+          var sound = new Howl({
+            src: [url],
+            format: ['mp3'],
+            volume: 1,
+            onplay: () => {
+              this.talking = true
+              this.loading = false
+            },
+            onend: () => {
+              // call onRead (callback)
+              this.onRead(this.message, url)
+              this.talking = false
+              this.message = ''
+              setTimeout(function () {
+                window.scrollTo(0, document.body.scrollHeight)
+              }, 100)
+            }
+          })
+          sound.play()
         }
       })
     }
   },
-  template: `<li class="new-statement">
+  template: `<li v-bind:class="{ 'new-statement': true, isWorking: talking||loading }">
     <input type="text" class="message-input" v-model="message" v-on:keyup.enter="submit" placeholder="What do you want to say?" />
     <span v-if="talking"><i class="fi-volume text-muted"></i></span>
-    <audio id="audio-elem"></audio>
+    <span v-if="loading" class="text-muted">Processing...</span>
   </li>`
 })

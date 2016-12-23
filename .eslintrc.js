@@ -25,6 +25,7 @@ module.exports = {
   },
   globals: {
     Blob: true,
-    URL: true
+    URL: true,
+    Howl: true
   }
 }

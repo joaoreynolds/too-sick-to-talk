@@ -1,4 +1,5 @@
 import Vue from 'vue'
+import {Howl} from 'howler'
 
 export default Vue.component('single-statement', {
   props: ['statement'],
@@ -12,9 +13,13 @@ export default Vue.component('single-statement', {
   methods: {
     replayAudio: (statement, e) => {
       e.preventDefault()
-      const audioElement = document.getElementById('audio-elem')
-      audioElement.src = statement.audioUrl
-      audioElement.play()
+
+      var sound = new Howl({
+        src: [statement.audioUrl],
+        format: ['mp3'],
+        volume: 1
+      })
+      sound.play()
     }
   }
 })

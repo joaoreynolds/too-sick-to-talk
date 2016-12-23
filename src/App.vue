@@ -1,8 +1,6 @@
 <template>
   <div id="app">
-    <div class="container-fluid">
-      <conversation></conversation>
-    </div>
+    <conversation></conversation>
   </div>
 </template>
 
@@ -19,6 +17,8 @@ export default {
 
 <style>
 #app {
-  margin-top: 30px;
+  padding-top: 100px;
+  position: relative;
+  color: #575757;
 }
 </style>

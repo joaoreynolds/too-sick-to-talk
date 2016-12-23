@@ -1,6 +1,5 @@
 <template>
   <div class="conversation">
-    <h4>Lost your tonsils? Find your voice by typing below. Hit enter to speak.</h4>
     <statements></statements>
   </div>
 </template>

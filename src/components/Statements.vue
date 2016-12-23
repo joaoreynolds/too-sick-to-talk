@@ -1,16 +1,19 @@
 <template>
   <div class="statements">
-    <button type="button" class="btn btn-sm btn-danger clear-btn" v-on:click="handleClearAll" v-if="statements.length > 0">Clear All</button>
-    <ul>
-      <single-statement v-for="statement in statements" :statement="statement"></single-statement>
-      <new-statement :onRead="handleNewStatement"></new-statement>
-    </ul>
+    <statements-header :onClearAll="handleClearAll" :statementCount="statements.length" :voice="voice" :onChangeVoice="handleChangeVoice"></statements-header>
+    <div class="container-fluid">
+      <ul>
+        <single-statement v-for="statement in statements" :statement="statement"></single-statement>
+        <new-statement :onRead="handleNewStatement" :voice="voice"></new-statement>
+      </ul>
+    </div>
   </div>
 </template>
 
 <script>
 import SingleStatement from './SingleStatement'
 import NewStatement from './NewStatement'
+import StatementsHeader from './StatementsHeader'
 import moment from 'moment'
 
 export default {
@@ -18,12 +21,14 @@ export default {
   data () {
     return {
       // statements: [{date: moment(), msg: 'first statement', audioUrl: xxx}, {date: moment(), msg: 'Second one'}]
-      statements: []
+      statements: [],
+      voice: 'Brian'
     }
   },
   components: {
     SingleStatement,
-    NewStatement
+    NewStatement,
+    StatementsHeader
   },
   methods: {
     /**
@@ -37,6 +42,9 @@ export default {
     },
     handleClearAll: function () {
       this.statements = []
+    },
+    handleChangeVoice: function (voice) {
+      this.voice = voice
     }
   }
 }
@@ -56,7 +64,7 @@ ul {
 }
 
 li {
-  border-top: 1px solid #F6F6F6;
+  border-top: 1px solid #EEEADE;
   padding: 6px 12px;
 }
 
@@ -67,9 +75,14 @@ li {
   border-radius: 3px;
   margin-top: 10px;
 }
+.new-statement.isWorking{
+  border-color: #00AE12;
+  background-color: #F4FFF6;
+}
 .new-statement .message-input{
   flex: 1 0 auto;
   border: 0px;
+  background: transparent;
 }
 .new-statement .message-input:focus{
   outline: 0px;
