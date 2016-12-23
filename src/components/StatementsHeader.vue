@@ -1,9 +1,10 @@
 <template>
   <header class="statements-header">
     <div class="container-fluid">
-      <h3>Lost your tonsils? Find your voice by typing below. Hit enter to speak.</h3>
+      <h3>Too sick to talk? Find your voice by typing below. Hit enter to speak.</h3>
       <div class="form-inline">
-        <select class="form-control" name="voice" v-model="myVoice">
+        <label for="voice" class="voice-label">Voice:</label>
+        <select class="form-control form-control-sm" name="voice" v-model="myVoice">
           <option v-for="voiceOption in voiceOptions" v-bind:value="voiceOption">{{voiceOption}}</option>
         </select>
         <button type="button" class="btn btn-sm btn-danger clear-btn" v-on:click="onClearAll" v-if="statementCount > 0">
@@ -51,13 +52,17 @@ export default {
 <style scoped>
   .statements-header{
     position: fixed;
-    padding-top: 20px;
+    padding: 15px 0;
     top: 0px;
     left: 0px;
     right: 0px;
     background: #564C30;
     color: #ffffff;
-    height: 100px;
+    height: 110px;
+  }
+
+  .voice-label{
+    font-size: .8em;
   }
 
   h3{

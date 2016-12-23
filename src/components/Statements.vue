@@ -55,9 +55,6 @@ export default {
 .statements{
   font-size: 1.5em;
 }
-.clear-btn{
-  margin-bottom: 10px;
-}
 ul {
   list-style: none;
   padding: 0;

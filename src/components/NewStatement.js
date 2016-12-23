@@ -78,9 +78,10 @@ export default Vue.component('new-statement', {
               this.onRead(this.message, url)
               this.talking = false
               this.message = ''
-              setTimeout(function () {
+              setTimeout(() => {
                 window.scrollTo(0, document.body.scrollHeight)
-              }, 100)
+                this.$refs.newMsgElem.focus()
+              })
             }
           })
           sound.play()
@@ -89,8 +90,16 @@ export default Vue.component('new-statement', {
     }
   },
   template: `<li v-bind:class="{ 'new-statement': true, isWorking: talking||loading }">
-    <input type="text" class="message-input" v-model="message" v-on:keyup.enter="submit" placeholder="What do you want to say?" />
+    <input
+      type="text"
+      class="message-input"
+      v-model="message"
+      v-on:keyup.enter="submit"
+      placeholder="What do you want to say?"
+      :disabled="talking||loading"
+      ref="newMsgElem"/>
     <span v-if="talking"><i class="fi-volume text-muted"></i></span>
     <span v-if="loading" class="text-muted">Processing...</span>
+    
   </li>`
 })

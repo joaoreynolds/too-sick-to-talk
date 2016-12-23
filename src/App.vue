@@ -17,7 +17,7 @@ export default {
 
 <style>
 #app {
-  padding-top: 100px;
+  padding-top: 110px;
   position: relative;
   color: #575757;
 }
