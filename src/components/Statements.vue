@@ -1,10 +1,17 @@
 <template>
   <div class="statements">
-    <statements-header :onClearAll="handleClearAll" :statementCount="statements.length" :voice="voice" :onChangeVoice="handleChangeVoice"></statements-header>
+    <statements-header
+      :onClearAll="handleClearAll"
+      :statementCount="statements.length"
+      :voice="voice"
+      :onChangeVoice="handleChangeVoice"
+      :voicesOn="voicesOn"
+      :onToggleVoices="handleToggleVoices">
+    </statements-header>
     <div class="container-fluid">
       <ul>
         <single-statement v-for="statement in statements" :statement="statement"></single-statement>
-        <new-statement :onRead="handleNewStatement" :voice="voice"></new-statement>
+        <new-statement :onRead="handleNewStatement" :voice="voice" :voicesOn="voicesOn"></new-statement>
       </ul>
     </div>
   </div>
@@ -22,7 +29,8 @@ export default {
     return {
       // statements: [{date: moment(), msg: 'first statement', audioUrl: xxx}, {date: moment(), msg: 'Second one'}]
       statements: [],
-      voice: 'Brian'
+      voice: 'Brian',
+      voicesOn: true
     }
   },
   components: {
@@ -45,6 +53,9 @@ export default {
     },
     handleChangeVoice: function (voice) {
       this.voice = voice
+    },
+    handleToggleVoices: function () {
+      this.voicesOn = !this.voicesOn
     }
   }
 }

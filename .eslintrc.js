@@ -21,7 +21,8 @@ module.exports = {
     'comma-dangle': 0,
     'brace-style': ["error", "stroustrup"],
     'space-before-function-paren': 0,
-    'space-before-blocks': 0
+    'space-before-blocks': 0,
+    'keyword-spacing': 0
   },
   globals: {
     Blob: true,

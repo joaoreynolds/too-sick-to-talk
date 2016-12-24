@@ -7,7 +7,7 @@ export default Vue.component('single-statement', {
     <div v-if="statement.date" class="date">{{statement.date ? statement.date.format('LTS') : ''}}</div>
     <div class="msg">
       {{statement.msg}}
-      <a class="playback-btn" href="#" v-on:click="replayAudio(statement, $event)" title="Replay audio"><i class="fi-play-circle"></i></a>
+      <a v-if="statement.audioUrl" class="playback-btn" href="#" v-on:click="replayAudio(statement, $event)" title="Replay audio"><i class="fi-play-circle"></i></a>
     </div>
   </li>`,
   methods: {

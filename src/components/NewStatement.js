@@ -4,7 +4,7 @@ import Polly from 'aws-sdk/clients/polly'
 import {Howl} from 'howler'
 
 export default Vue.component('new-statement', {
-  props: ['onRead', 'voice'],
+  props: ['onRead', 'voice', 'voicesOn'],
   data () {
     return {
       message: '',
@@ -15,6 +15,21 @@ export default Vue.component('new-statement', {
   methods: {
     submit: function (e) {
       e.preventDefault()
+
+      const saveNewMessage = (url) => {
+        this.onRead(this.message, url)
+        this.talking = false
+        this.message = ''
+        setTimeout(() => {
+          window.scrollTo(0, document.body.scrollHeight)
+          this.$refs.newMsgElem.focus()
+        })
+      }
+
+      // if the voices is not on, just save the message, no voice
+      if(!this.voicesOn){
+        return saveNewMessage()
+      }
 
       this.loading = true
 
@@ -74,14 +89,7 @@ export default Vue.component('new-statement', {
               this.loading = false
             },
             onend: () => {
-              // call onRead (callback)
-              this.onRead(this.message, url)
-              this.talking = false
-              this.message = ''
-              setTimeout(() => {
-                window.scrollTo(0, document.body.scrollHeight)
-                this.$refs.newMsgElem.focus()
-              })
+              saveNewMessage(url)
             }
           })
           sound.play()
